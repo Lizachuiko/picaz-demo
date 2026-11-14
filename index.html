@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/picaz-demo/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..600&display=swap" rel="stylesheet" />
+    <title>Picaz — prototype v1</title>
+    <!-- Theme before the first paint (Nov 11): the same resolution as src/lib/theme.ts — ?theme=, else the saved setting
+         (picaz-ui → state.theme), else the system — so a dark page never flashes white while the app loads -->
+    <script>
+      (function () {
+        try {
+          var q = new URLSearchParams(location.search).get('theme')
+          var t = q === 'dark' || q === 'light' || q === 'system' ? q : (JSON.parse(localStorage.getItem('picaz-ui') || '{}').state || {}).theme
+          var dark = t === 'dark' || (t !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches)
+          document.documentElement.classList.toggle('dark', dark)
+        } catch (e) {}
+      })()
+    </script>
+    <style>html.dark{--lightningcss-light: ;--lightningcss-dark:initial;color-scheme:dark;background:#0c0d0f}</style>
+    <script type="module" crossorigin src="/picaz-demo/assets/index-DVNWD5ef.js"></script>
+    <link rel="stylesheet" crossorigin href="/picaz-demo/assets/index-ZYpYN64_.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
