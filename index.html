@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/picaz-demo/favicon.svg" />
+    <!-- Nov 15 (the phone layout): viewport-fit=cover lets the shell under the notch and the home indicator (env(safe-area-inset-*)
+         pads the bars back); interactive-widget makes Android's keyboard resize the layout, so the composer stays above it -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content" />
+    <meta name="theme-color" content="#F7F8FA" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Nov 19 (the design-system reset): Golos Text instead of Inter. The interface uses 400 and 500 only; 600 and 700 are loaded
+         for the product pictures alone — the slides' headlines and the marketplace storefronts' prices -->
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <title>Picaz — prototype v1</title>
+    <!-- Theme before the first paint (Nov 11; Nov 15 — light or dark, light by default, no "as in the system"): the same resolution
+         as src/lib/theme.ts — ?theme=, else the saved setting (picaz-ui → state.theme) — so a dark page never flashes white while
+         the app loads. Anything but "dark" is light -->
+    <script>
+      (function () {
+        try {
+          var q = new URLSearchParams(location.search).get('theme')
+          var t = q !== null ? q : (JSON.parse(localStorage.getItem('picaz-ui') || '{}').state || {}).theme
+          document.documentElement.classList.toggle('dark', t === 'dark')
+          if (t === 'dark') document.querySelector('meta[name="theme-color"]').content = '#131415'
+        } catch (e) {}
+      })()
+    </script>
+    <style>html.dark{--lightningcss-light: ;--lightningcss-dark:initial;color-scheme:dark;background:#131415}</style>
+    <script type="module" crossorigin src="/picaz-demo/assets/index-RJz3nUCq.js"></script>
+    <link rel="stylesheet" crossorigin href="/picaz-demo/assets/index-CUEUBBWB.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
